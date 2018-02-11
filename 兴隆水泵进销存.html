@@ -40,15 +40,6 @@
             height: auto;
         }
 
-        #searchbar>form {
-            width: 100%;
-        }
-
-        input.storedform {
-            width: 500px !important;
-
-        }
-
         .breadClums {
             width: 100%;
             height: auto;
@@ -72,6 +63,7 @@
         a.nav-link {
             display: inline-block;
             vertical-align: middle;
+            box-sizing: border-box;
         }
 
         .checkoperate {
@@ -106,11 +98,11 @@
             position: relative;
 
         }
-
-        .table {
-            text-align: center;
+        .tablechecked{
+        background-color: #b8daff;
+        color:white;
+        
         }
-
         .dropdown-menu {
             left: auto;
         }
@@ -168,9 +160,13 @@
         <div class='headerNav'>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" style="font-family: 微软雅黑">兴隆水泵有限公司</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div id="searchbar" class="collapse navbar-collapse" id="navbarSupportedContent">
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 storedform" type="text" placeholder="库存" list="stored">
+                        <input class="form-control mr-sm-2" type="text" placeholder="库存" list="stored">
                         <datalist id="stored">
                             <option value="sun">1111</option>
                             <option>1121</option>
@@ -178,6 +174,7 @@
                             <option>1141</option>
                             <option>1151</option>
                         </datalist>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
             </nav>
@@ -256,12 +253,12 @@
 
             </ul>
         </div>
-        <!--销售历史单据表 -->
+        <!-- 销售历史单据表 -->
         <div id="salesTable">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col"></th>
+                        <th scope="col" style="width: 10%"></th>
                         <th scope="col" style="width: 10%">单据号</th>
                         <th scope="col" style="width: 10%">单据日期</th>
                         <th scope="col" style="width: 20%">客户</th>
@@ -272,52 +269,52 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="checkbox" checked=true>
+                            <input type="checkbox">
                         </td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                        <th>2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
                         <td>@mdo</td>
                     </tr>
                     <tr>
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox">
-                        </td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th>2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
                         <td>@mdo</td>
                     </tr>
                     <tr>
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th style="z-index: 10;">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
                         <td>@mdo</td>
                     </tr>
                     <tr>
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
                         <td>@mdo</td>
                     </tr>
                 </tbody>
@@ -329,6 +326,20 @@
         $("#clientmenu").on("click", "a", function () {
             window.location.href = this.href
         });
+        //表单点击行选中复选框
+        $("table").on("click", "tr", function () {
+        if($(this).find("input").eq(0).is(':checked')){
+            $(this).find("input").eq(0).prop('checked', false);
+            $(this).eq(0).removeClass("tablechecked");
+        }
+        else{
+        var trs = $(this).parent("tbody").find('tr').find("input");
+        trs.prop('checked', false);
+        $(this).parent("tbody").find('tr').removeClass("tablechecked");
+        $(this).find("input").eq(0).prop('checked', true);
+        $(this).eq(0).addClass("tablechecked");
+            }
+    });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
