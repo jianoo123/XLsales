@@ -2,9 +2,9 @@ import xadmin
 from .models import Documents
 
 class DocumentsAdmin(object):
-    list_display = ['client', 'commodities', 'document_id', 'add_time']
-    search_field = ['client', 'commodities']
-    list_filter = ['client', 'commodities']
+    list_display = ['document_id','client', 'district', 'money', 'add_time']
+    search_field = ['client', 'district', 'money']
+    list_filter =  ['client', 'district', 'money']
 
 
 xadmin.site.register(Documents,DocumentsAdmin)

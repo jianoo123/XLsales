@@ -35,6 +35,18 @@ class FactoryToCommodity(models.Model):
     factory = models.ForeignKey(Factory, verbose_name=u"厂家")
     commodity = models.ForeignKey(Commodities, verbose_name=u"商品")
 
+    class Meta:
+        verbose_name = u"厂家商品"
+        verbose_name_plural = verbose_name
+
+    def get_id(self):
+        return self.id
+
+    def get_merchant(self):
+        merchant = self.commodity.name+' '+self.factory.name
+        return merchant
+
+
 
 class Charge(models.Model):
     charge = models.CharField(max_length=10,verbose_name=u"商品价格")

@@ -18,10 +18,11 @@ from django.contrib import admin
 import xadmin
 from django.views.generic import TemplateView
 
-from documents.views import HomePageView,AddDocument
+from documents.views import HomePageView,AddDocument,ChangeDocumentView
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^$', HomePageView.as_view(),name='index'),
     url(r'^document/$', AddDocument.as_view(), name='document'),
+    url(r'^change/(?P<document_id>\d+)/$', ChangeDocumentView.as_view(), name='change'),
 ]

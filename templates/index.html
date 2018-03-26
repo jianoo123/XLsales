@@ -203,10 +203,10 @@
                 <a class="nav-link " href="#">打印</a>
             </li>
             <li class="nav-item operateNav-item">
-                <a class="nav-link" href="#">增加</a>
+                <a class="nav-link" href="{% url 'document' %}">增加</a>
             </li>
             <li class="nav-item operateNav-item modifyTable">
-                <a class="nav-link" href="#">修改</a>
+                <a class="nav-link" href="">修改</a>
             </li>
             <div class="nav-item operateNav-item" id="checktime">
                 <a class="nav-link" href="#">查询方案:</a>
@@ -266,17 +266,17 @@
             </thead>
             <tbody>
             {% for document in all_documents %}
-            <tr>
-                <td>
-                    <input type="checkbox">
-                </td>
-                <td>{{ document.document_id }}</td>
-                <td>{{ document.add_time }}</td>
-                <td>{{ document.client.name }}</td>
-                <td>{{ document.money }}</td>
-                <td>{{ document.remark }}</td>
-            </tr>
-{% endfor %}
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>{{ document.document_id }}</td>
+                    <td>{{ document.add_time }}</td>
+                    <td>{{ document.district.name }}{{ document.client.name }}</td>
+                    <td>{{ document.money }}</td>
+                    <td>{{ document.remark }}</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
@@ -309,9 +309,10 @@
         }
 
     });
+    //点击修改跳转到修改单据页面
     $(".modifyTable").on('click',function () {
         id = $('.tablechecked td').eq(1).text();
-        window.open('test.html' + '?tableId=' +id);
+        window.open('/change/'+id);
     });
 </script>
 <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>

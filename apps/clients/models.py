@@ -21,7 +21,6 @@ class District(models.Model):
         return self.clients_set.all()
 
 
-
 class Clients(models.Model):
     name = models.CharField(max_length=50,verbose_name=u"客户名称")
     district = models.ForeignKey(District,verbose_name=u"乡镇")
